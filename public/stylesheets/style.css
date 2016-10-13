@@ -25,5 +25,6 @@ button, input[type=submit], input[type=reset] {
 }
 
 .dark {
-  //TODO implement switch
+  background: black;
+  color: white;
 }
