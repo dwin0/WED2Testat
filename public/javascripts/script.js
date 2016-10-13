@@ -5,16 +5,17 @@
     $(document).on('ready', function () {
 
         $('#changeStyle').on('click', function () {
-            console.log('click');
-
             if(dark) {
                 $('body').removeClass('dark');
             } else {
                 $('body').addClass('dark');
             }
             dark = !dark;
-
         });
+
+        $('input[type=reset]').on('click', function () {
+            window.location.href = "/";
+        })
 
     });
 
