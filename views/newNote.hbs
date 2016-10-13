@@ -1,0 +1,40 @@
+{{#with note}}
+
+    <form action="/notes/{{_id}}" method="post">
+        <label>Titel
+        <input type="text" id="title" name="title" value="{{title}}" required></label>
+        <label>Beschreibung
+        <input type="text" id="description" name="description" value="{{description}}"></label>
+        <label>Wichtigkeit
+        <input type="number" min="0" max="5" id="importance" name="importance" value="{{importance}}" required></label>
+        <label>Fertig bis
+        <input type="date" id="endDate" name="endDate" value="{{endDate}}" required></label>
+        <label>
+            {{#if finished}}
+                <input type="checkbox" id="isFinished" name="finished" checked>Erledigt!</label>
+                {{else}}
+                <input type="checkbox" id="notFinished" name="finished">Erledigt!</label>
+            {{/if}}
+        <input type="submit" value="Speichern">
+        <input type="reset" value="Abbruch">
+    </form>
+
+{{else}}
+    <form action="/notes" method="post">
+        <label>Titel
+            <input type="text" id="title" name="title" value="Beispiel" required></label>
+        <label>Beschreibung
+            <input type="text" id="description" name="description" value="Text"></label>
+        <label>Wichtigkeit
+            <input type="number" min="0" max="5" id="importance" name="importance" value="1" required></label>
+        <label>Fertig bis
+            <input type="date" id="endDate" name="endDate" value="2016-10-12" required></label>
+        <label>
+            <input type="checkbox" id="finished" name="finished">Erledigt!</label>
+        <input type="submit" value="Anlegen">
+        <input type="reset" value="Abbruch">
+    </form>
+{{/with}}
+
+
+<!--TODO: Abbruch-Button wieder zurück auf index.hbs-->

@@ -1,0 +1,29 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+button, input[type=submit], input[type=reset] {
+  background: white;
+  font-size: 1em;
+  padding: 10px 32px;
+}
+
+/*TODO: fluid design */
+
+#newNote {
+  float: left;
+  width: 85%;
+}
+
+#changeStyle {
+  float: right;
+}
+
+.dark {
+  //TODO implement switch
+}
