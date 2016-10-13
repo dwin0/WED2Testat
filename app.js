@@ -4,14 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var moment = require('moment');
 var routes = require('./routes/noteRoutes');
 
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+
+// Register Helper
+var hbs = require('hbs');
+hbs.registerHelper('timeUntil', function(endDate) {
+  date = new Date(endDate);
+  return moment([date.getFullYear(), date.getMonth(), date.getDate()]).fromNow();
+});
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

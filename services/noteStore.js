@@ -1,13 +1,14 @@
 var Datastore = require('nedb');
+var moment = require('moment');
 var db = new Datastore({filename: '../services/notes.db', autoload: true});
 
-function Note(title, description, importance, endDate, finished) {
+function Note(title, description,   importance, endDate, finished) {
     this.title = title;
     this.description = description;
     this.importance = importance;
     this.endDate = endDate;
     this.finished = finished == 'on';
-    this.createdDate = JSON.stringify(new Date());
+    this.createdDate = moment().format('YYYY-MM-DD');
 }
 
 function addNote(req) {
@@ -20,7 +21,9 @@ function addNote(req) {
 function updateNote(req, res, callback) {
     var data = req.body;
     var isFinished = data.finished == 'on';
-    db.update({_id: req.params.id}, {title: data.title, description: data.description, importance: data.importance, endDate: data.endDate, finished: isFinished}, {multi: false},
+
+    db.update({_id: req.params.id}, { $set: {title: data.title, description: data.description, importance: data.importance,
+            endDate: data.endDate, finished: isFinished}}, {multi: false},
         function (err) {
             if(err) {
                 console.error(err.message);

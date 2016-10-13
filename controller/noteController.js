@@ -18,7 +18,9 @@ module.exports.getNode = function (req, res) {
 };
 
 module.exports.update = function (req, res) {
-    noteDB.update(req, res, renderIndex);
+    noteDB.update(req, res, function () {
+        res.redirect('/');
+    });
 };
 
 module.exports.removeNote = function (req, res) {

@@ -11,5 +11,4 @@ router.post('/notes/:id', notes.update); //TODO: put
 router.delete('/notes/:id', notes.removeNote);
 
 
-
 module.exports = router;
