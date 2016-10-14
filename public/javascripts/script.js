@@ -1,3 +1,5 @@
+//Achtung: Gemäss Vorgabe kein JS auf dem Client. Nachfragen, wie die Sortierung und der Switcher genau gemacht werden sollen (neu laden?)
+
 (function($) {
 
     var dark = false;
