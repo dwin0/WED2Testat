@@ -11,18 +11,18 @@ function Note(title, description,   importance, endDate, finished) {
     this.createdDate = moment().format('YYYY-MM-DD');
 }
 
-function addNote(req) {
-    var data = req.body;
+function addNote(request) {
+    var data = request.body;
     var note = new Note(data.title, data.description, data.importance, data.endDate, data.finished);
     db.insert(note);
     return note;
 }
 
-function updateNote(req, callback) {
-    var data = req.body;
+function updateNote(request, callback) {
+    var data = request.body;
     var isFinished = data.finished == 'on';
 
-    db.update({_id: req.params.id}, { $set: {title: data.title, description: data.description, importance: data.importance,
+    db.update({_id: request.params.id}, { $set: {title: data.title, description: data.description, importance: data.importance,
             endDate: data.endDate, finished: isFinished}}, {multi: false},
         function (err) {
             if(err) {
@@ -62,7 +62,7 @@ function getAllNotes(callback, response) {
             console.error(err.message);
             return;
         }
-
+        //hier muss das Resultat sortiert werden!
         callback(response, result);
     });
 }

@@ -16,10 +16,10 @@
                 <input type="checkbox" id="notFinished" name="finished">Erledigt!</label>
             {{/if}}
         <input type="submit" value="Speichern">
-        <a href="/">
-            <button>Abbruch</button>
-        </a>
     </form>
+    <a href="/">
+        <button>Abbruch</button>
+    </a>
 
 {{else}}
     <form action="/note" method="post">
@@ -34,8 +34,8 @@
         <label>
             <input type="checkbox" id="finished" name="finished">Erledigt!</label>
         <input type="submit" value="Anlegen">
-        <a href="/">
-            <button>Abbruch</button>
-        </a>
     </form>
+    <a href="/">
+        <button>Abbruch</button>
+    </a>
 {{/with}}

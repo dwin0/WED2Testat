@@ -1,5 +1,9 @@
 var noteDB = require('../services/noteStore');
 var darkStyle = false;
+var importanceSorting = false;
+var finishedDateSorting = false;
+var createdDateSorting = false;
+var showFinished = false;
 
 module.exports.showIndex = function (req, res) {
     noteDB.all(renderIndex, res);
@@ -35,12 +39,33 @@ module.exports.changeStyle = function (req, res) {
     res.redirect('/');
 };
 
-function renderIndex(response, data) {
-    response.render('index', {allNotes: data, dark: darkStyle});
+module.exports.sortImportance = function (req, res) {
+    importanceSorting = !importanceSorting;
+    res.redirect('/');
+};
+
+module.exports.sortFinishedDate = function (req, res) {
+    finishedDateSorting = !finishedDateSorting;
+    res.redirect('/');
+};
+
+module.exports.sortCreatedDate = function (req, res) {
+    createdDateSorting = !createdDateSorting;
+    res.redirect('/');
+};
+
+module.exports.showFinished = function (req, res) {
+    showFinished = !showFinished;
+    res.redirect('/');
+};
+
+function renderIndex(res, data) {
+    res.render('index', {allNotes: data, dark: darkStyle, importance: importanceSorting,
+        finishedDate: finishedDateSorting, createdDate: createdDateSorting, showFinished: showFinished});
     //Daten werden sowohl an layout.hbs als auch an index.hbs weitergeleitet
 }
 
-function renderNote(response, data) {
-    response.render('newNote', {note: data, dark: darkStyle});
+function renderNote(res, data) {
+    res.render('newNote', {note: data, dark: darkStyle});
     //Daten werden sowohl an layout.hbs als auch an index.hbs weitergeleitet
 }

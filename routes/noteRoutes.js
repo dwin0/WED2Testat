@@ -10,5 +10,9 @@ router.get('/note/:id/', notes.getNode);
 router.post('/note/:id', notes.update); //TODO: put
 router.delete('/note/:id', notes.removeNote);
 router.get('/changeStyle', notes.changeStyle);
+router.get('/sortByImportance', notes.sortImportance);
+router.get('/sortByFinishedDate', notes.sortFinishedDate);
+router.get('/sortByCreatedDate', notes.sortCreatedDate);
+router.get('/showFinished', notes.showFinished);
 
 module.exports = router;

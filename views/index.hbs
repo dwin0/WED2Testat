@@ -6,10 +6,22 @@
     <input type="submit" value="BlackWhite-Style">
 </form>
 
-<button id="byFinishDate">By finish Date</button>
-<button id="byCreatedDate">By created Date</button>
-<button id="byImportance">By Importance</button>
-<button id="showFinished">Show finished</button>
+<form id="byFinishDate" action="/sortByFinishedDate">
+    <input type="submit" value="By finish Date">
+</form>
+
+<form id="byCreatedDate" action="/sortByCreatedDate">
+    <input type="submit" value="By created Date">
+</form>
+
+<form id="byImportance" action="/sortByImportance">
+    <input type="submit" value="By Importance">
+</form>
+
+<form id="showFinished" action="/showFinished">
+    <input type="submit" value="Show finished">
+</form>
+
 
 {{#each allNotes}}
     <p>Titel: {{title}}</p>
