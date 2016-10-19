@@ -4,11 +4,11 @@ var notes = require('../controller/noteController.js');
 
 
 router.get('/', notes.showIndex);
-router.get('/notes', notes.getNewNote);
-router.post('/notes', notes.addNewNote);
-router.get('/notes/:id/', notes.getNode);
-router.post('/notes/:id', notes.update); //TODO: put
-router.delete('/notes/:id', notes.removeNote);
-
+router.get('/newNote', notes.getNewNote);
+router.post('/note', notes.addNewNote);
+router.get('/note/:id/', notes.getNode);
+router.post('/note/:id', notes.update); //TODO: put
+router.delete('/note/:id', notes.removeNote);
+router.get('/changeStyle', notes.changeStyle);
 
 module.exports = router;

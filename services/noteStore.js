@@ -18,7 +18,7 @@ function addNote(req) {
     return note;
 }
 
-function updateNote(req, res, callback) {
+function updateNote(req, callback) {
     var data = req.body;
     var isFinished = data.finished == 'on';
 
@@ -30,18 +30,18 @@ function updateNote(req, res, callback) {
                 return;
             }
 
-            getAllNotes(callback, res);
+            callback();
         })
 }
 
-function removeNote(callback, id, response) {
+function removeNote(id, callback) {
     db.remove({_id: id}, {multi: false}, function (err) {
         if(err) {
             console.error(err.message);
             return;
         }
 
-        getAllNotes(callback, response);
+        callback();
     })
 }
 

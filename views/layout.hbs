@@ -2,12 +2,9 @@
 <html>
   <head>
       <title>Note App</title>
-      <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/locale/af.js"></script>
-      <script src="/javascripts/script.js" type="text/javascript"></script>
       <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
-  <body>
+  <body {{#if dark}}class="dark"{{/if}}>
     {{{body}}}
   </body>
 </html>

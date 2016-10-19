@@ -1,6 +1,6 @@
 {{#with note}}
 
-    <form action="/notes/{{_id}}" method="post">
+    <form action="/note/{{_id}}" method="post">
         <label>Titel
         <input type="text" id="title" name="title" value="{{title}}" required></label>
         <label>Beschreibung
@@ -16,11 +16,13 @@
                 <input type="checkbox" id="notFinished" name="finished">Erledigt!</label>
             {{/if}}
         <input type="submit" value="Speichern">
-        <input type="reset" value="Abbruch">
+        <a href="/">
+            <button>Abbruch</button>
+        </a>
     </form>
 
 {{else}}
-    <form action="/notes" method="post">
+    <form action="/note" method="post">
         <label>Titel
             <input type="text" id="title" name="title" value="Beispiel" required></label>
         <label>Beschreibung
@@ -32,9 +34,8 @@
         <label>
             <input type="checkbox" id="finished" name="finished">Erledigt!</label>
         <input type="submit" value="Anlegen">
-        <input type="reset" value="Abbruch">
+        <a href="/">
+            <button>Abbruch</button>
+        </a>
     </form>
 {{/with}}
-
-
-<!--TODO: Abbruch-Button wieder zurück auf index.hbs-->

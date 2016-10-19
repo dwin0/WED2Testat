@@ -13,8 +13,6 @@ button, input[type=submit], input[type=reset] {
   padding: 10px 32px;
 }
 
-/*TODO: fluid design */
-
 #newNote {
   float: left;
   width: 85%;
