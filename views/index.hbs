@@ -6,7 +6,7 @@
     <input type="submit" value="BlackWhite-Style">
 </form>
 
-<form id="byFinishDate" action="/sortByFinishedDate">
+<form id="byFinishDate" action="/sortByEndDate">
     <input type="submit" value="By finish Date">
 </form>
 
@@ -18,8 +18,12 @@
     <input type="submit" value="By Importance">
 </form>
 
-<form id="showFinished" action="/showFinished">
-    <input type="submit" value="Show finished">
+<form id="hideFinished" action="/hideFinished">
+    {{#if showFinished}}
+        <input type="submit" id="finishedIsNotHidden" value="Hide finished">
+    {{else}}
+        <input type="submit" id="finishedIsHidden" value="Show finished">
+    {{/if}}
 </form>
 
 

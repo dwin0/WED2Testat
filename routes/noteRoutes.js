@@ -11,8 +11,8 @@ router.post('/note/:id', notes.update); //TODO: put
 router.delete('/note/:id', notes.removeNote);
 router.get('/changeStyle', notes.changeStyle);
 router.get('/sortByImportance', notes.sortImportance);
-router.get('/sortByFinishedDate', notes.sortFinishedDate);
+router.get('/sortByEndDate', notes.sortEndDate);
 router.get('/sortByCreatedDate', notes.sortCreatedDate);
-router.get('/showFinished', notes.showFinished);
+router.get('/hideFinished', notes.showFinished);
 
 module.exports = router;

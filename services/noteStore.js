@@ -56,15 +56,60 @@ function getNote(request, response, callback) {
     });
 }
 
-function getAllNotes(callback, response) {
-    db.find({}, function (err, result) {
-        if(err) {
-            console.error(err.message);
-            return;
+function getAllNotes(callback, response, orderBy, showFinished) {
+    var order = -1;
+
+    if(orderBy[0].importance) {
+        if(orderBy[0].reverseOrder) {
+            order = 1;
         }
-        //hier muss das Resultat sortiert werden!
-        callback(response, result);
-    });
+        db.find({}).sort({importance: order}).exec(function (err, result) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            callback(response, result);
+        });
+    } else if(orderBy[1].endDate) {
+        if(orderBy[1].reverseOrder) {
+            order = 1;
+        }
+        db.find({}).sort({endDate: order}).exec(function (err, result) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            callback(response, result);
+        });
+    } else if(orderBy[2].createdDate) {
+        if(orderBy[2].reverseOrder) {
+            order = 1;
+        }
+        db.find({}).sort({createdDate: order}).exec(function (err, result) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            callback(response, result);
+        });
+    } else if(!showFinished) {
+        db.find({finished: false}, function (err, result) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            callback(response, result);
+        });
+    } else {
+        db.find({}, function (err, result) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            callback(response, result);
+        });
+    }
+
 }
 
 module.exports = {add : addNote, update: updateNote, remove : removeNote, get : getNote, all : getAllNotes};
