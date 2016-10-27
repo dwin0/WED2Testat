@@ -57,59 +57,47 @@ function getNote(request, response, callback) {
 }
 
 function getAllNotes(callback, response, orderBy, showFinished) {
-    var order = -1;
+    var order = 1;
 
-    if(orderBy[0].importance) {
-        if(orderBy[0].reverseOrder) {
-            order = 1;
+    if(orderBy["importance"]) {
+        if(orderBy["reverseOrderImportance"]) {
+            order = -1;
         }
-        db.find({}).sort({importance: order}).exec(function (err, result) {
-            if (err) {
-                console.error(err.message);
-                return;
-            }
-            callback(response, result);
+        db.find({}).sort({importance: order*-1}).exec(function (err, result) {
+            returnResult(err, result, callback, response);
         });
-    } else if(orderBy[1].endDate) {
-        if(orderBy[1].reverseOrder) {
-            order = 1;
+    } else if(orderBy["endDate"]) {
+        if(orderBy["reverseOrderEndDate"]) {
+            order = -1;
         }
         db.find({}).sort({endDate: order}).exec(function (err, result) {
-            if (err) {
-                console.error(err.message);
-                return;
-            }
-            callback(response, result);
+            returnResult(err, result, callback, response);
         });
-    } else if(orderBy[2].createdDate) {
-        if(orderBy[2].reverseOrder) {
-            order = 1;
+    } else if(orderBy["createdDate"]) {
+        if(orderBy["reverseOrderCreatedDate"]) {
+            order = -1;
         }
         db.find({}).sort({createdDate: order}).exec(function (err, result) {
-            if (err) {
-                console.error(err.message);
-                return;
-            }
-            callback(response, result);
+            returnResult(err, result, callback, response);
         });
     } else if(!showFinished) {
         db.find({finished: false}, function (err, result) {
-            if (err) {
-                console.error(err.message);
-                return;
-            }
-            callback(response, result);
+            returnResult(err, result, callback, response);
         });
     } else {
         db.find({}, function (err, result) {
-            if (err) {
-                console.error(err.message);
-                return;
-            }
-            callback(response, result);
+            returnResult(err, result, callback, response);
         });
     }
-
 }
 
 module.exports = {add : addNote, update: updateNote, remove : removeNote, get : getNote, all : getAllNotes};
+
+
+function returnResult(err, result, callback, response) {
+    if (err) {
+        console.error(err.message);
+        return;
+    }
+    callback(response, result);
+}

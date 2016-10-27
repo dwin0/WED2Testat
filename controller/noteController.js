@@ -1,13 +1,13 @@
 var noteDB = require('../services/noteStore');
 var darkStyle = false;
 var showFinished = true;
-var orderBy = [{"importance":false, "reverseOrder":false},
-               {"endDate":false, "reverseOrder":false},
-               {"createdDate":false, "reverseOrder":false}];
+var orderBy = {"importance":false, "reverseOrderImportance":false,
+               "endDate":false, "reverseOrderEndDate":false,
+               "createdDate":false, "reverseOrderCreatedDate":false};
 
 module.exports.showIndex = function (req, res) {
-    console.log("importance order: " + orderBy[0].importance + " endDate order: " + orderBy[1].endDate + " createdDate order: " + orderBy[2].createdDate);
-    console.log("imp reverse: " + orderBy[0].reverseOrder + " end reverse: " + orderBy[1].reverseOrder + " created reverse: " + orderBy[2].reverseOrder);
+    //console.log("importance order: " + orderBy["importance"] + " endDate order: " + orderBy["endDate"] + " createdDate order: " + orderBy["createdDate"]);
+    //console.log("imp reverse: " + orderBy["reverseOrderImportance"] + " end reverse: " + orderBy["reverseOrderEndDate"] + " created reverse: " + orderBy["reverseOrderCreatedDate"]);
     noteDB.all(renderIndex, res, orderBy, showFinished);
 };
 
@@ -42,35 +42,29 @@ module.exports.changeStyle = function (req, res) {
 };
 
 module.exports.sortImportance = function (req, res) {
-    if(orderBy[0].importance){
-        orderBy[0].reverseOrder = !orderBy[0].reverseOrder;
-    }
+    switchOrder("importance");
 
-    orderBy[0].importance = true;
-    orderBy[1].endDate = false;
-    orderBy[2].createdDate = false;
+    orderBy["importance"] = true;
+    orderBy["endDate"] = false;
+    orderBy["createdDate"] = false;
     res.redirect('/');
 };
 
 module.exports.sortEndDate = function (req, res) {
-    if(orderBy[1].endDate) {
-        orderBy[1].reverseOrder = !orderBy[1].reverseOrder;
-    }
+    switchOrder("endDate");
 
-    orderBy[0].importance = false;
-    orderBy[1].endDate = true;
-    orderBy[2].createdDate = false;
+    orderBy["importance"] = false;
+    orderBy["endDate"] = true;
+    orderBy["createdDate"] = false;
     res.redirect('/');
 };
 
 module.exports.sortCreatedDate = function (req, res) {
-    if(orderBy[2].createdDate) {
-        orderBy[2].reverseOrder = !orderBy[2].reverseOrder;
-    }
+    switchOrder("createdDate");
 
-    orderBy[0].importance = false;
-    orderBy[1].endDate = false;
-    orderBy[2].createdDate = true;
+    orderBy["importance"] = false;
+    orderBy["endDate"] = false;
+    orderBy["createdDate"] = true;
     res.redirect('/');
 };
 
@@ -87,4 +81,11 @@ function renderIndex(res, data) {
 function renderNote(res, data) {
     res.render('newNote', {note: data, dark: darkStyle});
     //Daten werden sowohl an layout.hbs als auch an index.hbs weitergeleitet
+}
+
+function switchOrder(name) {
+    if(orderBy[name]) {
+        var upperCaseName = name.charAt(0).toUpperCase() + name.slice(1);
+        orderBy["reverseOrder" + upperCaseName] = !orderBy["reverseOrder" + upperCaseName];
+    }
 }
