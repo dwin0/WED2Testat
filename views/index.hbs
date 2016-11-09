@@ -1,22 +1,26 @@
-<form id="newNote" action="/newNote">
-    <input type="submit" value="Create new Note">
-</form>
+<div>
+    <form id="newNote" action="/newNote">
+        <input type="submit" value="Create new Note">
+    </form>
 
-<form id="changeStyle" action="/changeStyle">
-    <input type="submit" value="BlackWhite-Style">
-</form>
+    <form id="changeStyle" action="/changeStyle">
+        <input type="submit" value="BlackWhite-Style">
+    </form>
+</div>
 
-<form id="byFinishDate" action="/sortByEndDate">
-    <input type="submit" value="By finish Date">
-</form>
+<div>
+    <form id="byFinishDate" action="/sortByEndDate">
+        <input type="submit" value="By finish Date">
+    </form>
 
-<form id="byCreatedDate" action="/sortByCreatedDate">
-    <input type="submit" value="By created Date">
-</form>
+    <form id="byCreatedDate" action="/sortByCreatedDate">
+        <input type="submit" value="By created Date">
+    </form>
 
-<form id="byImportance" action="/sortByImportance">
-    <input type="submit" value="By Importance">
-</form>
+    <form id="byImportance" action="/sortByImportance">
+        <input type="submit" value="By Importance">
+    </form>
+</div>
 
 <form id="hideFinished" action="/hideFinished">
     {{#if showFinished}}
@@ -28,13 +32,18 @@
 
 
 {{#each allNotes}}
-    <p>Titel: {{title}}</p>
-    <p>Beschreibung: {{description}}</p>
-    <p>Wichtigkeit: {{importance}}</p>
-    <p>Erledigt bis: {{timeUntil endDate}}</p>
-    <p>Id: {{_id}}</p>
-    <p>Erstellt am: {{createdDate}}</p>
-    <p>Erledigt? {{finished}}</p>
+    <div>
+        <p>Erledigt? {{finished}}</p>
+        <p>Titel: {{title}}</p>
+        <p>Wichtigkeit: {{importance}}</p>
+    </div>
+    <div>
+        <p>Beschreibung: {{description}}</p>
+        <p>Erledigt bis: {{timeUntil endDate}}</p>
+        <!--<p>Id: {{_id}}</p>-->
+        <p>Erstellt am: {{createdDate}}</p>
+    </div>
+
 
     <form action="/note/{{_id}}">
         <input type="submit" value="Edit">

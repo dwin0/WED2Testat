@@ -26,3 +26,24 @@ button, input[type=submit], input[type=reset] {
   background: black;
   color: white;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputLine {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputLine > label {
+  width: 100px;
+  font-weight: bold;
+  text-align: end;
+}
+
+.inputLine > input {
+  width: 160px;
+  flex-grow: 1;
+}
