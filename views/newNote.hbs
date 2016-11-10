@@ -1,23 +1,25 @@
 {{#with note}}
-
+    <h2>Edit {{title}}</h2>
+    <hr class="horizontalLine">
     <form action="/note/{{_id}}" method="post">
-        <div class="inputLine">
-            <label>Titel</label>
-            <input type="text" id="title" name="title" value="{{title}}" required>
+        <div class="rowToColumn">
+            <label class="inputLabel">Titel</label>
+            <input class="input" type="text" id="title" name="title" value="{{title}}" required>
         </div>
-        <div class="inputLine">
-            <label>Beschreibung</label>
-            <input type="text" id="description" name="description" value="{{description}}">
+        <div class="rowToColumn">
+            <label class="inputLabel">Beschreibung</label>
+            <textarea class="input" rows="3" id="description" name="description" value="{{description}}"></textarea>
         </div>
-        <div class="inputLine">
-            <label>Wichtigkeit</label>
-            <input type="number" min="0" max="5" id="importance" name="importance" value="{{importance}}" required>
+        <div class="rowToColumn">
+            <label class="inputLabel">Wichtigkeit</label>
+            <input class="input" type="number" min="0" max="5" id="importance" name="importance" value="{{importance}}" required>
         </div>
-        <div class="inputLine">
-            <label>Fertig bis</label>
-            <input type="date" id="endDate" name="endDate" value="{{endDate}}" required>
+        <div class="rowToColumn">
+            <label class="inputLabel">Fertig bis</label>
+            <input class="input" type="date" id="endDate" name="endDate" value="{{endDate}}" required>
         </div>
-        <div>
+        <div class="row">
+            <label class="spaceLabel"></label>
             <label>
                 {{#if finished}}
                     <input type="checkbox" id="isFinished" name="finished" checked>Erledigt!</label>
@@ -26,14 +28,16 @@
                 {{/if}}
         </div>
         <div class="row">
+            <label class="spaceLabel"></label>
             <input type="submit" value="Speichern">
-
-            <a href="/">
-                <button>Abbruch</button>
-            </a>
         </div>
     </form>
-
+    <div class="row">
+        <label class="spaceLabel"></label>
+        <a href="/">
+            <button>Abbruch</button>
+        </a>
+    </div>
 
 {{else}}
     <form action="/note" method="post">

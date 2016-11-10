@@ -1,49 +1,198 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 button, input[type=submit], input[type=reset] {
-  background: white;
-  font-size: 1em;
-  padding: 10px 32px;
+    background: white;
+    font-size: 1em;
+    padding: 8px 8px;
+    margin: 2px;
+    border-radius: 5px;
+    width: 150px;
 }
 
 #newNote {
-  float: left;
-  width: 85%;
+    float: left;
+    width: 85%;
 }
 
 #changeStyle {
-  float: right;
+    float: right;
 }
 
 .dark {
-  background: black;
-  color: white;
+    background: black;
+    color: white;
 }
 
 .row {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
-.inputLine {
-  display: flex;
-  flex-direction: row;
+.input {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px 4px;
 }
 
-.inputLine > label {
-  width: 100px;
-  font-weight: bold;
-  text-align: end;
+.inputLabel {
+    font-weight: bold;
+    margin: 5px;
 }
 
-.inputLine > input {
-  width: 160px;
-  flex-grow: 1;
+.noteElement {
+    padding: 5px;
+    margin: 8px 0px;
+}
+
+.noteElement > #content{
+    margin: 0px 5px;
+}
+
+.firstLine {
+    width: 160px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.title {
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.headerLine{
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.horizontalLine{
+    border-color: lightgrey;
+    margin: 12px 5px 36px 0px;
+}
+
+@media (min-width: 50em) {
+    .rowToColumn {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .columnToRowToColumn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row_row_column {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .input {
+        width: 160px;
+        flex-grow: 1;
+    }
+
+    .inputLabel {
+        width: 124px;
+        text-align: end;
+        padding-right: 24px;
+    }
+
+    .spaceLabel {
+        width: 160px;
+    }
+}
+
+@media (min-width: 30em) and (max-width: 50em) {
+    .rowToColumn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .columnToRowToColumn {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .row_row_column {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .noteElement{
+        border: 1px grey solid;
+        border-radius: 5px;
+    }
+
+    #btnList > form > .btn {
+        width: 100%;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .inputLabel {
+        width: 100%;
+    }
+
+    .spaceLabel {
+        width: 0px;
+    }
+}
+
+@media (max-width: 30em) {
+    .rowToColumn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .columnToRowToColumn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row_row_column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #btnList > form > .btn {
+        width: 100%;
+    }
+
+    #donald > form > .btn {
+        width: 100%;
+    }
+
+    .title{
+        margin: 4px 0px;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .inputLabel {
+        width: 100%;
+    }
+
+    .spaceLabel {
+        width: 0px;
+    }
 }
