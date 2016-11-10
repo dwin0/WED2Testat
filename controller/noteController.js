@@ -6,8 +6,6 @@ var orderBy = {"importance":false, "reverseOrderImportance":false,
                "createdDate":false, "reverseOrderCreatedDate":false};
 
 module.exports.showIndex = function (req, res) {
-    //console.log("importance order: " + orderBy["importance"] + " endDate order: " + orderBy["endDate"] + " createdDate order: " + orderBy["createdDate"]);
-    //console.log("imp reverse: " + orderBy["reverseOrderImportance"] + " end reverse: " + orderBy["reverseOrderEndDate"] + " created reverse: " + orderBy["reverseOrderCreatedDate"]);
     noteDB.all(renderIndex, res, orderBy, showFinished);
 };
 
@@ -20,7 +18,7 @@ module.exports.addNewNote = function (req, res) {
     res.redirect('/');
 };
 
-module.exports.getNode = function (req, res) {
+module.exports.getNote = function (req, res) {
     noteDB.get(req, res, renderNote);
 };
 
@@ -79,7 +77,7 @@ function renderIndex(res, data) {
 }
 
 function renderNote(res, data) {
-    res.render('newNote', {note: data, dark: darkStyle});
+    res.render('newNote', {withNote: true, note: data, dark: darkStyle});
     //Daten werden sowohl an layout.hbs als auch an index.hbs weitergeleitet
 }
 

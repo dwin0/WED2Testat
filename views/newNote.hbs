@@ -1,55 +1,29 @@
-{{#with note}}
+<form {{#if withNote}}action="/note/{{note._id}}" {{else}}action="/note" {{/if}} method="post">
+    <div class="inputLine">
+        <label for="title">Titel</label>
+        <input type="text" id="title" name="title" {{#if withNote}}value="{{note.title}}" {{else}}value="" required{{/if}}>
+    </div>
+    <div class="inputLine">
+        <label for="description">Beschreibung</label>
+        <input type="text" id="description" name="description" {{#if withNote}}value="{{note.description}}" {{else}} value="" {{/if}}>
+    </div>
+    <div class="inputLine">
+        <label for="importance">Wichtigkeit</label>
+        <input type="number" min="0" max="5" id="importance" name="importance" {{#if withNote}}value="{{note.importance}}" {{else}} value="" required{{/if}}>
+    </div>
+    <div class="inputLine">
+        <label for="endDate">Fertig bis</label>
+        <input type="date" id="endDate" name="endDate" {{#if withNote}}value="{{note.endDate}}" {{else}}value="" required{{/if}}>
+    </div>
+    <div>
+        <label for="finished">
+            <input type="checkbox" id="finished" name="finished" {{#if note.finished}}checked{{/if}}>Erledigt!</label>
+    </div>
+    <div class="row">
+        <input type="submit" value="Speichern">
+    </div>
 
-    <form action="/note/{{_id}}" method="post">
-        <div class="inputLine">
-            <label>Titel</label>
-            <input type="text" id="title" name="title" value="{{title}}" required>
-        </div>
-        <div class="inputLine">
-            <label>Beschreibung</label>
-            <input type="text" id="description" name="description" value="{{description}}">
-        </div>
-        <div class="inputLine">
-            <label>Wichtigkeit</label>
-            <input type="number" min="0" max="5" id="importance" name="importance" value="{{importance}}" required>
-        </div>
-        <div class="inputLine">
-            <label>Fertig bis</label>
-            <input type="date" id="endDate" name="endDate" value="{{endDate}}" required>
-        </div>
-        <div>
-            <label>
-                {{#if finished}}
-                    <input type="checkbox" id="isFinished" name="finished" checked>Erledigt!</label>
-                    {{else}}
-                    <input type="checkbox" id="notFinished" name="finished">Erledigt!</label>
-                {{/if}}
-        </div>
-        <div class="row">
-            <input type="submit" value="Speichern">
-
-            <a href="/">
-                <button>Abbruch</button>
-            </a>
-        </div>
-    </form>
-
-
-{{else}}
-    <form action="/note" method="post">
-        <label>Titel
-            <input type="text" id="title" name="title" value="Beispiel" required></label>
-        <label>Beschreibung
-            <input type="text" id="description" name="description" value="Text"></label>
-        <label>Wichtigkeit
-            <input type="number" min="0" max="5" id="importance" name="importance" value="1" required></label>
-        <label>Fertig bis
-            <input type="date" id="endDate" name="endDate" value="2016-10-12" required></label>
-        <label>
-            <input type="checkbox" id="finished" name="finished">Erledigt!</label>
-        <input type="submit" value="Anlegen">
-    </form>
-    <a href="/">
-        <button>Abbruch</button>
-    </a>
-{{/with}}
+</form>
+<a href="/">
+    <button>Abbruch</button>
+</a>
