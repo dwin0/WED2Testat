@@ -22,6 +22,13 @@ hbs.registerHelper('timeUntil', function(endDate) {
   return moment([date.getFullYear(), date.getMonth(), date.getDate()]).fromNow();
 });
 
+hbs.registerHelper('showImportance', function(importance) {
+  var star = "";
+  for(var i = 1; i <= importance; i++) {
+    star = star + "* ";
+  }
+  return star;
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
