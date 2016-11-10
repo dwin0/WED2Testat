@@ -37,7 +37,7 @@
             <div class="row_row_column headerLine">
                 <div class="firstLine">{{timeUntil endDate}}</div>
                 <div class="title">{{title}}</div>
-                <div>{{showImportance importance}}</div>
+                <div class="bold big">{{showImportance importance}}</div>
             </div>
             <div class="rowToColumn">
             <label class="firstLine bold">
@@ -46,7 +46,7 @@
                 {{else}}
                     <input type="checkbox" id="notFinished" name="finished">Erledigt!</label>
                 {{/if}}
-                <textarea class="grow" rows="3" value="{{description}}" contenteditable="false"></textarea>
+                <textarea class="grow" rows="3" contenteditable="false">{{description}}</textarea>
                 <!--<p>Id: {{_id}}</p>-->
                 <!--<div>Erstellt am: {{createdDate}}</div>-->
             </div>

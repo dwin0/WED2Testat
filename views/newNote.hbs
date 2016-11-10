@@ -9,7 +9,7 @@
     
     <div class="rowToColumn">
         <label class="inputLabel" for="description">Beschreibung</label>
-        <input class="input" type="text" id="description" name="description" {{#if withNote}}value="{{note.description}}" {{else}} value="" {{/if}}>
+        <textarea class="input" rows="3" id="description" name="description">{{#if withNote}}{{note.description}}{{/if}}</textarea>
     </div>
 
     <div class="rowToColumn">

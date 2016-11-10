@@ -51,7 +51,7 @@ button, input[type=submit], input[type=reset] {
     margin: 8px 0px;
 }
 
-.noteElement > #content{
+.noteElement > #content {
     margin: 0px 5px;
 }
 
@@ -63,6 +63,10 @@ button, input[type=submit], input[type=reset] {
     font-weight: bold;
 }
 
+.big {
+    font-size: x-large;
+}
+
 .grow {
     flex-grow: 1;
 }
@@ -72,7 +76,7 @@ button, input[type=submit], input[type=reset] {
     flex-grow: 1;
 }
 
-.headerLine{
+.headerLine {
     width: 100%;
     margin-bottom: 2px;
 }
@@ -81,7 +85,7 @@ button, input[type=submit], input[type=reset] {
     flex-grow: 1;
 }
 
-.horizontalLine{
+.horizontalLine {
     border-color: lightgrey;
     margin: 12px 5px 36px 0px;
 }
@@ -134,7 +138,7 @@ button, input[type=submit], input[type=reset] {
         flex-direction: row;
     }
 
-    .noteElement{
+    .noteElement {
         border: 1px grey solid;
         border-radius: 5px;
     }
@@ -180,7 +184,7 @@ button, input[type=submit], input[type=reset] {
         width: 100%;
     }
 
-    .title{
+    .title {
         margin: 4px 0px;
     }
 
