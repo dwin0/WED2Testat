@@ -1,9 +1,10 @@
 var noteDB = require('../services/noteStore');
 var darkStyle = false;
 var showFinished = true;
-var orderBy = {"importance":false, "reverseOrderImportance":false,
-               "endDate":false, "reverseOrderEndDate":false,
-               "createdDate":false, "reverseOrderCreatedDate":false};
+var orderBy;
+var orderImportance = 1;
+var orderEndDate = -1;
+var orderCreatedDate = -1;
 
 module.exports.showIndex = function (req, res) {
     noteDB.all(renderIndex, res, orderBy, showFinished);
@@ -40,29 +41,20 @@ module.exports.changeStyle = function (req, res) {
 };
 
 module.exports.sortImportance = function (req, res) {
-    switchOrder("importance");
-
-    orderBy["importance"] = true;
-    orderBy["endDate"] = false;
-    orderBy["createdDate"] = false;
+    orderImportance *= -1;
+    orderBy = {importance: orderImportance};
     res.redirect('/');
 };
 
 module.exports.sortEndDate = function (req, res) {
-    switchOrder("endDate");
-
-    orderBy["importance"] = false;
-    orderBy["endDate"] = true;
-    orderBy["createdDate"] = false;
+    orderEndDate *= -1;
+    orderBy = {endDate: orderEndDate};
     res.redirect('/');
 };
 
 module.exports.sortCreatedDate = function (req, res) {
-    switchOrder("createdDate");
-
-    orderBy["importance"] = false;
-    orderBy["endDate"] = false;
-    orderBy["createdDate"] = true;
+    orderCreatedDate *= -1;
+    orderBy = {createdDate: orderCreatedDate};
     res.redirect('/');
 };
 
@@ -79,11 +71,4 @@ function renderIndex(res, data) {
 function renderNote(res, data) {
     res.render('newNote', {withNote: true, note: data, dark: darkStyle});
     //Daten werden sowohl an layout.hbs als auch an index.hbs weitergeleitet
-}
-
-function switchOrder(name) {
-    if(orderBy[name]) {
-        var upperCaseName = name.charAt(0).toUpperCase() + name.slice(1);
-        orderBy["reverseOrder" + upperCaseName] = !orderBy["reverseOrder" + upperCaseName];
-    }
 }

@@ -57,35 +57,12 @@ function getNote(request, response, callback) {
 }
 
 function getAllNotes(callback, response, orderBy, showFinished) {
-    var order = 1;
-
-    if(orderBy["importance"]) {
-        if(orderBy["reverseOrderImportance"]) {
-            order = -1;
-        }
-        db.find({}).sort({importance: order*-1}).exec(function (err, result) {
-            returnResult(err, result, callback, response);
-        });
-    } else if(orderBy["endDate"]) {
-        if(orderBy["reverseOrderEndDate"]) {
-            order = -1;
-        }
-        db.find({}).sort({endDate: order}).exec(function (err, result) {
-            returnResult(err, result, callback, response);
-        });
-    } else if(orderBy["createdDate"]) {
-        if(orderBy["reverseOrderCreatedDate"]) {
-            order = -1;
-        }
-        db.find({}).sort({createdDate: order}).exec(function (err, result) {
-            returnResult(err, result, callback, response);
-        });
-    } else if(!showFinished) {
-        db.find({finished: false}, function (err, result) {
+    if(!showFinished) {
+        db.find({finished: false}).sort(orderBy).exec(function (err, result) {
             returnResult(err, result, callback, response);
         });
     } else {
-        db.find({}, function (err, result) {
+        db.find({}).sort(orderBy).exec(function (err, result) {
             returnResult(err, result, callback, response);
         });
     }

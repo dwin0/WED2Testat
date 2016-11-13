@@ -23,11 +23,7 @@
     <div class="spacer"></div>
 
     <form id="hideFinished" action="/hideFinished">
-        {{#if showFinished}}
-            <input class="btn" type="submit" id="finishedIsNotHidden" value="Hide finished">
-        {{else}}
-            <input class="btn" type="submit" id="finishedIsHidden" value="Show finished">
-        {{/if}}
+        <input class="btn" type="submit" id="finishedButton" {{#if showFinished}}value="Hide finished" {{else}} value="Show finished" {{/if}}>
     </form>
 </div>
 
@@ -40,15 +36,10 @@
                 <div class="bold big">{{showImportance importance}}</div>
             </div>
             <div class="rowToColumn">
-            <label class="firstLine bold">
-                {{#if finished}}
-                    <input type="checkbox" id="isFinished" name="finished" checked>Erledigt!</label>
-                {{else}}
-                    <input type="checkbox" id="notFinished" name="finished">Erledigt!</label>
-                {{/if}}
-                <textarea class="grow" rows="3" contenteditable="false">{{description}}</textarea>
-                <!--<p>Id: {{_id}}</p>-->
-                <!--<div>Erstellt am: {{createdDate}}</div>-->
+                <label for="finishedCheckbox" class="firstLine bold">
+                    <input type="checkbox" id="finishedCheckbox" name="finished" disabled {{#if finished}}checked{{/if}}>Erledigt!
+                </label>
+                <textarea class="grow" rows="3" readonly>{{description}}</textarea>
             </div>
         </div>
 
@@ -63,4 +54,6 @@
             </form>
         </div>
     </div>
+{{else}}
+    <p id="noNotes">Keine Todo gefunden</p>
 {{/each}}

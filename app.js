@@ -19,7 +19,7 @@ app.set('view engine', 'hbs');
 var hbs = require('hbs');
 hbs.registerHelper('timeUntil', function(endDate) {
   date = new Date(endDate);
-  return moment([date.getFullYear(), date.getMonth(), date.getDate()]).fromNow();
+  return moment([date.getFullYear(), date.getMonth(), date.getDate()+1]).fromNow();
 });
 
 hbs.registerHelper('showImportance', function(importance) {
