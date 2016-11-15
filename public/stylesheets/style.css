@@ -135,6 +135,9 @@ button, input[type=submit] {
         padding-right: 24px;
     }
 
+    .noteElement{
+        padding-top: 36px;
+    }
     .spaceLabel {
         width: 160px;
     }
@@ -200,6 +203,11 @@ button, input[type=submit] {
 
     #donald > form > .btn {
         width: 100%;
+    }
+
+    .noteElement {
+        border: 1px grey solid;
+        border-radius: 5px;
     }
 
     .title {
