@@ -56,11 +56,11 @@ button, input[type=submit] {
 
 .noteElement {
     padding: 5px;
-    margin: 8px 0px;
+    margin: 8px 0;
 }
 
 .noteElement > #content {
-    margin: 0px 5px;
+    margin: 0 5px;
 }
 
 .firstLine {
@@ -95,7 +95,7 @@ button, input[type=submit] {
 
 .horizontalLine {
     border-color: lightgrey;
-    margin: 12px 5px 36px 0px;
+    margin: 12px 5px 36px 0;
 }
 
 .btn:hover {
@@ -177,7 +177,7 @@ button, input[type=submit] {
     }
 
     .spaceLabel {
-        width: 0px;
+        width: 0;
     }
 }
 
@@ -211,7 +211,7 @@ button, input[type=submit] {
     }
 
     .title {
-        margin: 4px 0px;
+        margin: 4px 0;
     }
 
     .input {
@@ -223,6 +223,6 @@ button, input[type=submit] {
     }
 
     .spaceLabel {
-        width: 0px;
+        width: 0;
     }
 }

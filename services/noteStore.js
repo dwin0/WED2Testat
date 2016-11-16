@@ -1,6 +1,6 @@
-var Datastore = require('nedb');
+var datastore = require('nedb');
 var moment = require('moment');
-var db = new Datastore({filename: '../services/notes.db', autoload: true});
+var db = new datastore({filename: '../services/notes.db', autoload: true});
 
 function Note(title, description,   importance, endDate, finished) {
     this.title = title;
@@ -11,11 +11,17 @@ function Note(title, description,   importance, endDate, finished) {
     this.createdDate = moment().format('YYYY-MM-DD');
 }
 
-function addNote(request) {
+function addNote(request, callback) {
     var data = request.body;
     var note = new Note(data.title, data.description, data.importance, data.endDate, data.finished);
-    db.insert(note);
-    return note;
+    db.insert(note, function (err) {
+        if(err) {
+            console.error(err.message);
+            return;
+        }
+
+        callback();
+    });
 }
 
 function updateNote(request, callback) {
@@ -52,29 +58,29 @@ function getNote(request, response, callback) {
             return;
         }
 
-        callback(response, result);
+        callback(request, response, result);
     });
 }
 
-function getAllNotes(callback, response, orderBy, showFinished) {
-    if(!showFinished) {
+function getAllNotes(callback, request, response, orderBy, hideFinished) {
+    if(hideFinished) {
         db.find({finished: false}).sort(orderBy).exec(function (err, result) {
-            returnResult(err, result, callback, response);
+            returnResult(err, result, callback, response, request);
         });
     } else {
         db.find({}).sort(orderBy).exec(function (err, result) {
-            returnResult(err, result, callback, response);
+            returnResult(err, result, callback, response, request);
         });
     }
 }
 
-module.exports = {add : addNote, update: updateNote, remove : removeNote, get : getNote, all : getAllNotes};
-
-
-function returnResult(err, result, callback, response) {
+function returnResult(err, result, callback, response, request) {
     if (err) {
         console.error(err.message);
         return;
     }
-    callback(response, result);
+
+    callback(request, response, result);
 }
+
+module.exports = {add : addNote, update: updateNote, remove : removeNote, get : getNote, all : getAllNotes};

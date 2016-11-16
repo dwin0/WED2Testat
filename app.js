@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var moment = require('moment');
 var routes = require('./routes/noteRoutes');
+var session = require('express-session');
 
 var app = express();
 
@@ -19,7 +20,7 @@ app.set('view engine', 'hbs');
 var hbs = require('hbs');
 hbs.registerHelper('timeUntil', function(endDate) {
   date = new Date(endDate);
-  return moment([date.getFullYear(), date.getMonth(), date.getDate()+1]).fromNow();
+  return moment([date.getFullYear(), date.getMonth(), date.getDate()]).add(1, 'days').fromNow();
 });
 
 hbs.registerHelper('showImportance', function(importance) {
@@ -29,6 +30,28 @@ hbs.registerHelper('showImportance', function(importance) {
   }
   return star;
 });
+
+hbs.registerHelper('buttonActivated', function(activeButtons, buttonName) {
+  if(typeof activeButtons != 'undefined') {
+      if(activeButtons.indexOf(buttonName) !== -1) {
+          return 'btnActivated';
+      }
+  }
+});
+
+hbs.registerHelper('isButtonOn', function (allButtons, buttonName, options) {
+  if(typeof allButtons != 'undefined') {
+      if (allButtons.indexOf(buttonName) !== -1) {
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  }
+});
+
+
+app.use(cookieParser());
+app.use(session({secret: 'ueimnsiadf83ntbfinnnfgwngbjkrnwmer947505', resave: false, saveUninitialized: true}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -47,7 +70,6 @@ app.use(require("method-override")(function(req, res){
     return method;
   }
 }));
-
 
 app.use('/', routes);
 

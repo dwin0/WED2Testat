@@ -2,9 +2,10 @@
 <html>
   <head>
       <title>Note App</title>
+      <meta name="viewport" content="width=device-with, initial-scale=1">
       <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
-  <body {{#if dark}}class="dark"{{/if}}>
+  <body {{#isButtonOn activeButtons 'darkStyle'}}class="dark"{{/isButtonOn}}>
     {{{body}}}
   </body>
 </html>

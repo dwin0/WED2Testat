@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.4",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.14.2",
     "handlebars-helper-moment": "^0.2.0",
     "hbs": "~4.0.0",
     "method-override": "^2.3.6",

@@ -4,26 +4,29 @@
     </form>
     <div class="spacer"></div>
     <form id="changeStyle" action="/changeStyle">
-        <input class="btn {{#if dark}}btnActivated{{/if}}" type="submit" value="BlackWhite-Style">
+        <input class="btn {{buttonActivated activeButtons 'darkStyle'}}" type="submit" value="BlackWhite-Style">
     </form>
 </div>
 
 <div class="rowToColumn" id="btnList">
-    <form id="byFinishDate" action="/sortByEndDate">
-        <input class="btn {{#if endDateActivated}}btnActivated{{/if}}" type="submit" value="By finish Date">
+    <form id="byFinishDate" action="/sort" method="GET">
+        <input class="btn {{buttonActivated activeButtons 'endDate'}}" type="submit" value="By finish Date">
+        <input type="hidden" name="by" value="endDate">
     </form>
 
-    <form id="byCreatedDate" action="/sortByCreatedDate">
-        <input class="btn {{#if createdDateActivated}}btnActivated{{/if}}" type="submit" value="By created Date">
+    <form id="byCreatedDate" action="/sort" method="GET">
+        <input class="btn {{buttonActivated activeButtons 'createdDate'}}" type="submit" value="By created Date">
+        <input type="hidden" name="by" value="createdDate">
     </form>
 
-    <form id="byImportance" action="/sortByImportance">
-        <input class="btn {{#if importanceActivated}}btnActivated{{/if}}" type="submit" value="By Importance">
+    <form id="byImportance" action="/sort" method="GET">
+        <input class="btn {{buttonActivated activeButtons 'importance'}}" type="submit" value="By Importance">
+        <input type="hidden" name="by" value="importance">
     </form>
     <div class="spacer"></div>
 
     <form id="hideFinished" action="/hideFinished">
-        <input class="btn {{#unless showFinished}}btnActivated{{/unless}}" type="submit" id="finishedButton" {{#if showFinished}}value="Hide finished" {{else}} value="Show finished" {{/if}}>
+        <input class="btn {{buttonActivated activeButtons 'hideFinished'}}" type="submit" id="finishedButton" {{#isButtonOn activeButtons 'hideFinished'}}value="Show finished" {{else}} value="Hide finished" {{/isButtonOn}}>
     </form>
 </div>
 
