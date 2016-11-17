@@ -19,7 +19,7 @@ app.set('view engine', 'hbs');
 // Register Helper
 var hbs = require('hbs');
 hbs.registerHelper('timeUntil', function(endDate) {
-  date = new Date(endDate);
+  var date = new Date(endDate);
   return moment([date.getFullYear(), date.getMonth(), date.getDate()]).add(1, 'days').fromNow();
 });
 
